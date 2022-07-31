@@ -12,6 +12,23 @@ import { TabularModelComponent } from './component/tabular-model/tabular-model.c
 import { MainMenuComponent } from './component/main-menu/main-menu.component';
 import { SideMenuComponent } from './component/side-menu/side-menu.component';
 import { SideStepsComponent } from './component/side-steps/side-steps.component';
+
+import { initializeApp } from "firebase/app";
+
+import { getAnalytics } from "firebase/analytics";
+const firebaseConfig = {
+  apiKey: "AIzaSyBgZEJVhqznN9Nyz8ln-EtXyKhDohJ6sYM",
+  authDomain: "bluenet-demo.firebaseapp.com",
+  projectId: "bluenet-demo",
+  storageBucket: "bluenet-demo.appspot.com",
+  messagingSenderId: "841036696495",
+  appId: "1:841036696495:web:e5257b43e1ec3429e03d5a",
+  measurementId: "G-0FSK0XWF54"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 @NgModule({
   declarations: [
     AppComponent,
