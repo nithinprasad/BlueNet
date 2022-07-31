@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "dist",
+
+    "public": "dist/blue-net",
     "ignore": [
       "firebase.json",
       "**/.*",
