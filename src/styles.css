@@ -1,1 +1,134 @@
 /* You can add global styles to this file, and also import other style files */
+@import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+@import '../node_modules/@syncfusion/ej2-angular-diagrams/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
+.bd-callout {
+    padding: .75rem;
+    margin-top: .75rem;
+    margin-bottom: .75rem;
+    border: 1px solid rgb(12, 12, 12);
+    border-left-width: .55rem;
+    border-radius: .25rem
+}
+
+.bd-callout h4 {
+    margin-top: 0;
+    margin-bottom: .25rem
+}
+
+.bd-callout p:last-child {
+    margin-bottom: 0
+}
+
+.bd-callout code {
+    border-radius: .25rem
+}
+
+.bd-callout+.bd-callout {
+    margin-top: -.25rem
+}
+
+.bd-callout-info {
+    border-left-color: #5bc0de
+}
+
+.bd-callout-info h4 {
+    color: #5bc0de
+}
+
+.bd-callout-warning {
+    border-left-color: #f0ad4e
+}
+
+.bd-callout-warning h4 {
+    color: #f0ad4e
+}
+
+.bd-callout-danger {
+    border-left-color: #d9534f
+}
+
+.bd-callout-danger h4 {
+    color: #d9534f
+}
+
+.bd-callout-primary {
+    border-left-color: #007bff
+}
+
+.bd-callout-primaryh4 {
+    color: #007bff
+}
+
+.bd-callout-success {
+    border-left-color: #28a745
+}
+
+.bd-callout-successh4 {
+    color: #28a745
+}
+
+.bd-callout-default {
+    border-left-color: #6c757d
+}
+
+.bd-callout-defaulth4 {
+    color: #6c757d
+}
+
+.inline-text {
+    display: block;
+}
+
+div.checkbox.switcher label,
+div.radio.switcher label {
+    padding: 0;
+}
+
+div.checkbox.switcher label *,
+div.radio.switcher label * {
+    vertical-align: middle;
+}
+
+div.checkbox.switcher label input,
+div.radio.switcher label input {
+    display: none;
+}
+
+div.checkbox.switcher label input+span,
+div.radio.switcher label input+span {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+    width: 56px;
+    height: 28px;
+    background: rgb(254, 249, 249);
+    border: 1px solid rgb(4, 0, 12);
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+}
+
+div.checkbox.switcher label input+span small,
+div.radio.switcher label input+span small {
+    position: absolute;
+    display: block;
+    width: 50%;
+    height: 100%;
+    background: rgb(124, 122, 122);
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    left: 0;
+}
+
+div.checkbox.switcher label input:checked+span,
+div.radio.switcher label input:checked+span {
+    background: #efa2a2;
+    border-color: #f5f1f2;
+}
+
+div.checkbox.switcher label input:checked+span small,
+div.radio.switcher label input:checked+span small {
+    left: 50%;
+}

@@ -1,0 +1,19 @@
+.text-muted{
+    font-size: .75rem;
+}
+
+.bd-callout {
+    border-top: 0em;
+    border-right: 0em;
+    margin-top: -.5rem;
+}
+
+h6{
+    margin: 0.1rem;
+}
+
+.bi-asterisk{
+    color: red;
+    font-size: .75rem;
+    padding-left: 5px;
+}

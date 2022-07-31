@@ -1,0 +1,13 @@
+.bd-callout {
+    border-top: 0em;
+    border-bottom: 0em;
+    border-right: 0em;
+    margin-top: .5rem;
+    padding: 2px;
+}
+
+.bd-callout-text {
+
+    margin-top: .5rem;
+    padding: 2px;
+}

@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-9">
+    <span class="inline-text"><i class="bi bi-info-circle"></i>
+      <h4 class="text-primary">Revison History</h4>
+    </span>
+  </div>
+  <div class="col-3">
+    <div class="checkbox switcher">
+      <label for="test1">
+        <small>Tabular</small>
+        <input type="checkbox" id="test1" name="visual" (change)="onCheckboxChange($event)">
+        <span><small></small></span>
+        <small>Visual</small>
+      </label>
+    </div>
+  </div>
+
+  <div class=" row">
+    <div class="col-10">
+      <table class="table table-borderless table-sm">
+        <thead>
+          <tr>
+            <th class="text-primary" scope="col">Part ID</th>
+            <th class="text-primary" scope="col">Part Name</th>
+            <th class="text-primary" scope="col">Doc ID</th>
+            <th class="text-primary" scope="col">Manufacturing Process</th>
+            <th class="text-primary" rowspan="2" scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>BGH564W9</th>
+            <th>Fork Level Assembly</th>
+            <th>S-000-1316-001</th>
+            <th><span class="badge text-bg-primary">Assembly</span></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-primary btn-sm">Revise/Update</button>
+    </div>
+  </div>
+
+  <div *ngIf="isTabular; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+    <app-tabular-model></app-tabular-model>
+  </ng-template>
+  <ng-template #elseBlock>
+    <app-diagram></app-diagram>
+  </ng-template>
+
+</div>

@@ -1,0 +1,22 @@
+<table class="table table-sm">
+    <thead>
+        <tr class="table-dark">
+            <th scope="col">Rev</th>
+            <th scope="col">Description</th>
+            <th scope="col">Prepared</th>
+            <th scope="col">Date</th>
+            <th scope="col">Approved By</th>
+            <th scope="col">Approved Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let revisions of this.findById('1')?this.findById('1'):[]">
+            <th scope="row">{{revisions.id}}</th>
+            <td>{{revisions.description}}</td>
+            <td>{{revisions.prepared}}</td>
+            <td>{{revisions.date}}</td>
+            <td>{{revisions.approvalBy}}</td>
+            <td>{{revisions.approvalDate}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-2">
+        <ejs-symbolpalette [palettes]="service.symbolPalette" [symbolHeight]=50 [symbolWidth]=50 (created)='created()'
+            nod>
+            <e-nodes>
+                <e-node id='node1' [shape]='start'></e-node>
+                <e-node id='node2' [shape]='stop'></e-node>
+            </e-nodes>
+        </ejs-symbolpalette>
+
+    </div>
+
+    <div class="col-10">
+        <div class="col-2">
+            <div class="row">
+                <select class="form-select" (change)="updateDiagram($event)" aria-label="Default select example"
+                    *ngIf="this.isRevisionAvailable() ">
+                    <option *ngFor="let revisons of this.diagramService.findById('1')?.model" value="{{revisons.id}}"
+                        selected>
+                        {{revisons.id}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <ejs-diagram height="700px" #diagram id="diagram" [snapSettings]='snapSettings'>
+        </ejs-diagram>
+        <button type="button" (click)="undo()" class=" btn btn-info btn-sm">Undo</button>
+        <button type="button" (click)="redo()" class="btn btn-info btn-sm">Redo</button>
+        <button type="button" (click)="save()" class="btn btn-info btn-sm">Save</button>
+    </div>
+</div>
