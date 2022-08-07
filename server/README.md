@@ -31,7 +31,7 @@ To have the most success using this guide you should have a general  **_command 
 
 - Data
 
-```json
+```sql
 CREATE TABLE "Data" (
 id integer DEFAULT nextval('"Data_id_seq"'::regclass) PRIMARY KEY,
 data json,
@@ -41,7 +41,7 @@ data json,
 ```
 
 - Document
-```json
+```sql
 CREATE  TABLE  "Document" (
 id integer DEFAULT nextval('"Document_id_seq"'::regclass) PRIMARY KEY,
 "partId"  character  varying(255),
@@ -59,7 +59,7 @@ client character varying(255),
 );
 ```
 - DocumentHistory
-```json
+```sql
 CREATE  TABLE  "DocumentHistory" (
 id integer DEFAULT nextval('"DocumentHistory_id_seq"'::regclass) PRIMARY KEY,
 "docId"  integer  REFERENCES  "Document"(id),
