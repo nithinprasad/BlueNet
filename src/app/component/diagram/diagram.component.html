@@ -15,9 +15,8 @@
             <div class="row">
                 <select class="form-select" (change)="updateDiagram($event)" aria-label="Default select example"
                     *ngIf="this.isRevisionAvailable() ">
-                    <option *ngFor="let revisons of this.diagramService.findById('1')?.model" value="{{revisons.id}}"
-                        selected>
-                        {{revisons.id}}
+                    <option *ngFor="let rev of document.revisions" value="{{rev.revisionid}}" selected>
+                        {{rev.revisionid}}
                     </option>
                 </select>
             </div>

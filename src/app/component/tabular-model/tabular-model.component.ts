@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { DiagramServiceService } from 'src/app/service/diagram-service.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Document } from 'src/app/model/Document';
+import { DocumentHistory } from 'src/app/model/DocumentHistory';
+import { DiagramApiService } from 'src/app/service/diagram-service.service';
 
 @Component({
   selector: 'app-tabular-model',
@@ -8,18 +10,20 @@ import { DiagramServiceService } from 'src/app/service/diagram-service.service';
 })
 export class TabularModelComponent implements OnInit {
 
-  constructor(public diagramService: DiagramServiceService) { }
+  @Input() document!: Document;
+  revisons: DocumentHistory[] = [];
+
+  constructor(public service: DiagramApiService) { }
 
   ngOnInit(): void {
+    this.service.getAllRevisionsByDocumentId(this.document.id).subscribe({
+      next: data => {
+        this.revisons = data
+      }
+    })
   }
 
-  findById(id: string) {
-    let response = this.diagramService.findById(id);
-    if (response) {
-      return response.model;
-    }
-    return [];
-  }
+
 
   formatDate(date: Date) {
     return [

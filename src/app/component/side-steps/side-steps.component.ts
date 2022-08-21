@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { DocumentHistory } from 'src/app/model/DocumentHistory';
 
 @Component({
   selector: 'app-side-steps',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideStepsComponent implements OnInit {
 
+  @Input() lastRevsion!: DocumentHistory;
   constructor() { }
 
   ngOnInit(): void {

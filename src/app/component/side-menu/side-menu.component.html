@@ -1,43 +1,44 @@
-<i class="bi bi-info-circle"></i>
-<h6>Part Title</h6>
+<i class="bi bi-info-circle">
+    Part Title
+</i>
+
 <div class="bd-callout bd-callout-warning ">
     <h6 class="text-muted"> Part ID<i class="bi bi-asterisk"></i></h6>
-    <h6 class="text-primary"> BGH564W9</h6>
+    <h6 class="text-primary"> {{document.id}}</h6>
 </div>
 <div class="bd-callout bd-callout-warning">
     <h6 class="text-muted"> Part Name <i class="bi bi-asterisk"></i></h6>
-    <h6 class="text-primary"> Fork Level Assembly</h6>
+    <h6 class="text-primary"> {{document.partName}}</h6>
 </div>
 <div class="bd-callout bd-callout-warning">
     <h6 class="text-muted"> Part Type <i class="bi bi-asterisk"></i></h6>
-    <h6 class="text-dark"> Assembly</h6>
+    <h6 class="text-dark"> {{document.partType}}</h6>
 </div>
 <div class="bd-callout bd-callout-warning">
     <h6 class="text-muted"> Alt Part ID</h6>
-    <h6 class="text-dark"> 1413</h6>
+    <h6 class="text-dark"> {{document.altPartId}}</h6>
 </div>
 <div class="bd-callout bd-callout-warning">
     <h6 class="text-muted"> Is Shippable FG?<i class="bi bi-asterisk"></i> </h6>
-    <h6 class="text-dark"> No</h6>
+    <h6 class="text-dark"> {{document.isShippableFG}}</h6>
 </div>
 <div class="bd-callout bd-callout-warning">
     <h6 class="text-muted"> Parent Part ID <i class="bi bi-asterisk"></i></h6>
-    <span class="badge text-bg-primary">BGH564W9</span>
-    <span class="badge text-bg-success">BGH564W9</span>
+    <span class="badge text-bg-primary">{{document.parentPartId}}</span>
 </div>
 <div class="bd-callout bd-callout-warning">
     <h6 class="text-muted"> Supply Source <i class="bi bi-asterisk"></i> </h6>
-    <h6 class="text-dark"> In House</h6>
+    <h6 class="text-dark">{{document.supplySource}}</h6>
 </div>
 <div class="bd-callout bd-callout-warning">
     <h6 class="text-muted"> HSN Code </h6>
-    <h6 class="text-dark"> 1413</h6>
-</div>  
+    <h6 class="text-dark"> {{document.hsnCode}}</h6>
+</div>
 <div class="bd-callout bd-callout-warning">
     <h6 class="text-muted">Client</h6>
-    <h6 class="text-dark"> -</h6>
+    <h6 class="text-dark"> {{document.client}}</h6>
 </div>
 <div class="bd-callout bd-callout-primary">
     <h6 class="text-muted"> Part Documentation</h6>
-    <h6 class="text-dark"> e-DOC</h6>
+    <h6 class="text-dark"> {{document.partDoc}}</h6>
 </div>

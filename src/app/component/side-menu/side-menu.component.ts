@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Document } from 'src/app/model/Document';
 
 @Component({
   selector: 'app-side-menu',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideMenuComponent implements OnInit {
 
+  @Input() document!: Document;
   constructor() { }
 
   ngOnInit(): void {

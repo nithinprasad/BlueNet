@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { DiagramComponent } from '@syncfusion/ej2-angular-diagrams';
+import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Document } from 'src/app/model/Document';
 import { ConnectorModel, Diagram, FlowShapeModel, NodeModel, PaletteModel, SnapConstraints, SnapSettingsModel, UndoRedo } from '@syncfusion/ej2-diagrams';
 import { DiagramRevison } from 'src/app/model/DiagramRevison';
-import { DiagramServiceService } from 'src/app/service/diagram-service.service';
+import { DiagramApiService } from 'src/app/service/diagram-service.service';
 import { NodeModelsBasicService } from 'src/app/service/node-models-basic.service';
+import { DocumentHistory } from 'src/app/model/DocumentHistory';
+import { Router } from '@angular/router';
 Diagram.Inject(UndoRedo);
 @Component({
   selector: 'app-diagram',
@@ -11,12 +13,22 @@ Diagram.Inject(UndoRedo);
   styleUrls: ['./diagram.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class DiagramComponents {
+export class DiagramComponents implements OnInit {
   @ViewChild("diagram")
-  public diagram!: DiagramComponent;
+  public diagram!: Diagram;
 
+  @Input() document!: Document;
 
-  constructor(public service: NodeModelsBasicService, public diagramService: DiagramServiceService) {
+  constructor(public service: NodeModelsBasicService, public diagramService: DiagramApiService, private router: Router) {
+
+  }
+  ngOnInit(): void {
+    let target = {
+      "target": {
+        "value": this.document.revisions.length
+      }
+    }
+    this.updateDiagram(target);
   }
 
   public snapSettings: SnapSettingsModel = {
@@ -38,40 +50,52 @@ export class DiagramComponents {
 
   public save(): void {
     let res = this.diagram.saveDiagram();
-    let revsion = new DiagramRevison();
-    revsion.set_model(res);
-    revsion.set_date(new Date());
-    let response = this.diagramService.saveDiagram("1", revsion);
+    let history: DocumentHistory = new DocumentHistory();
+    let input = {
+      "description": "Sample",
+      "preparedBy": "current User",
+      "data": ""
+    };
+    input.data = res;
+    console.log("here");
+    console.log(input);
+    this.diagramService.createRevision(this.document.id, input).subscribe({
+      next: data => {
+        console.log(data);
+        this.router.navigate(['/']);
+      }
+    });
 
-    console.log(response);
   }
 
   isRevisionAvailable() {
-    let models = this.diagramService.findById('1')?.model;
+    let models = this.document.revisions;
+
     if (models) {
       return models.length;
     }
     return 0;
   }
 
-
   updateDiagram(target: any): void {
     let selectedRevision = target.target.value;
-    let models = this.diagramService.findById('1')?.model;
-    if (models) {
-      let revison = models.find(id => id.id == selectedRevision);
-      if (revison?.model) {
-        this.diagram.loadDiagram(revison?.model);
-        console.log(revison?.model);
+    let models = this.diagramService.getRevisionById(this.document.id, selectedRevision).subscribe({
+      next: data => {
+        let dataObj = data.diagram;
+        if (dataObj.data) {
+          console.log(dataObj.data);
+          this.diagram.loadDiagram(dataObj.data);
+        }
+
       }
-    }
+    });
   }
 
 
   public start: FlowShapeModel = {
     type: 'Flow',
     shape: 'Terminator',
-    
+
   };
 
   public stop: FlowShapeModel = {

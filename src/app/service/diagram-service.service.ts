@@ -1,47 +1,37 @@
 import { Injectable } from '@angular/core';
-import { DiagramDTO } from '../model/DiagramDto';
-import { DiagramRevison } from '../model/DiagramRevison';
-
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { DocumentHistory } from '../model/DocumentHistory';
+import { Document } from "../model/Document";
+import { IDiagramService } from "./IDiagramService"
 @Injectable({
   providedIn: 'root'
 })
-export class DiagramServiceService {
+export class DiagramApiService implements IDiagramService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  private diagramStore: DiagramDTO[] = [];
-
-  public saveDiagram(id: string, revision: DiagramRevison): number | undefined {
-    let dto = this.findById(id);
-    if (dto == undefined) {
-      revision.set_id(1);
-      dto = new DiagramDTO(id, [])
-      this.diagramStore.push(dto);
-    }
-    let currRevsion = dto.model.length + 1;
-    revision.set_id(currRevsion++);
-    dto.model.push(revision);
-    const index = this.findIndex(id);
-    if (index > -1) {
-      this.diagramStore.splice(index, 1);
-    }
-    this.diagramStore.push(dto);
-    console.log(this.diagramStore);
-    return revision.id;
-  }
-  findCurrentRevsion(dto: DiagramDTO): number | undefined {
-    if (dto) {
-      //dto.model.length ? Math.max(...dto.model.map(function (revision: DiagramRevison) { return revision.id ? revision.id : 0; })) : 0;
-      return dto.model.length;
-    }
-    return 0;
+  public getAllDocuments(): Observable<Document[]> {
+    return this.http.get<Document[]>("api/documents");
   }
 
-  public findById(id: string): DiagramDTO | undefined {
-    return this.diagramStore.find(x => x.id == id);
+  public getByDocumentId(id: any): Observable<Document> {
+    return this.http.get<Document>(`api/documents/${id}`,);
   }
 
-  public findIndex(id: string): number {
-    return this.diagramStore.findIndex(x => x.id == id);
+  public getAllRevisionsByDocumentId(id: any): Observable<DocumentHistory[]> {
+    return this.http.get<DocumentHistory[]>(`api/documents/${id}/revisions`);
+  }
+
+  public createRevision(id: any, history: any): Observable<DocumentHistory> {
+    let params = new HttpParams().set('id', id);
+    let res = this.http.post<DocumentHistory>(`api/documents/${id}/revisions`, history);
+    console.log(res);
+    return res;
+  }
+
+  public getRevisionById(id: any, revid: any): Observable<any> {
+
+    return this.http.get<any>(`api/documents/${id}/revisions/${revid}`);
   }
 }
