@@ -13,6 +13,9 @@ export class TabularModelComponent implements OnInit {
   @Input() document!: Document;
   revisons: DocumentHistory[] = [];
 
+  @Input()
+  callbackFunction!: () => void;
+
   constructor(public service: DiagramApiService) { }
 
   ngOnInit(): void {
@@ -36,5 +39,7 @@ export class TabularModelComponent implements OnInit {
   padTo2Digits(num: any) {
     return num.toString().padStart(2, '0');
   }
+
+
 
 }

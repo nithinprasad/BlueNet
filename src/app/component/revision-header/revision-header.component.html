@@ -7,16 +7,27 @@
       <i class="bi bi-info-circle"></i> Revision History
     </button>
   </div>
-  <div class="col-2">
-    <div class="checkbox switcher">
-      <label for="test1">
-        <small>Tabular</small>
-        <input type="checkbox" id="test1" name="visual" (change)="onCheckboxChange($event)">
-        <span><small></small></span>
-        <small>Visual</small>
-      </label>
-    </div>
+  <div *ngIf="revisons.length!=0 || isCreateFlow; then radioBlock else emptyBlock">
   </div>
+
+  <ng-template #radioBlock>
+    <div class="col-2">
+      <div class="checkbox switcher">
+        <label for="test1">
+          <small>Tabular</small>
+          <input type="checkbox" id="test1" name="visual" (change)="onCheckboxChange($event)">
+          <span><small></small></span>
+          <small>Visual</small>
+        </label>
+      </div>
+    </div>
+
+  </ng-template>
+  <ng-template #emptyBlock>
+    <div class="col-2"></div>
+  </ng-template>
+
+
 </div>
 <div class="row">
   <div class="col-2">
@@ -48,11 +59,45 @@
   </div>
 </div>
 
-<div *ngIf="isTabular; then thenBlock else elseBlock"></div>
+<div *ngIf="revisons.length!=0 || isCreateFlow; then dataBlock else alertBlock">
+
+
+</div>
+
+<ng-template #dataBlock>
+
+  <div *ngIf="isTabular; then thenBlock else elseBlock"></div>
+</ng-template>
+
 <ng-template #thenBlock>
-  <app-tabular-model [document]="document"></app-tabular-model>
+  <app-tabular-model [document]="document" [callbackFunction]="myCallbackFunction"></app-tabular-model>
 
 </ng-template>
 <ng-template #elseBlock>
   <app-diagram [document]="document"></app-diagram>
+</ng-template>
+
+<ng-template #alertBlock>
+  <div class="row">
+    <div class="col-3">
+
+    </div>
+    <div class="col-4">
+      <div class="card text-black bg-gradient-primary mb-3">
+
+        <div class="card-body">
+          <h5 class="card-title">Process Route doesnot exist for this part</h5>
+          <div class="row">
+            <div class="col"> <button class="btn btn-success" (click)="doRevise()">Create Now</button>
+            </div>
+            <div class=" col "><button class=" btn disabled btn-primary ">Request Now</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class=" col-3"></div>
+
+  </div>
 </ng-template>

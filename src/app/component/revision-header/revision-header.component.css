@@ -1,3 +1,7 @@
 .switcher {
   padding: 1rem;
 }
+
+.card {
+  background-color: rgb(116, 175, 241);
+}

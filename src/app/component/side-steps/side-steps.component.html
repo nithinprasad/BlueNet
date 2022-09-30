@@ -1,30 +1,65 @@
-<div class="row">
+<div *ngIf="!lastRevsion; then createBlock else stepsBlock">
 
-    <div class="col">
-        <button type="button" class="btn btn-outline-success">
-            <i class="bi bi-info-circle"></i> Process Routes
-        </button>
-    </div>
 
-    <div class="col">
-        <button type="button" class="btn btn-primary btn-sm">edit</button>
-    </div>
 </div>
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <td scope="col">Step</td>
-            <td scope="col">Step Description</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td scope="row">
-                <div class="bd-callout bd-callout-success">{{lastRevsion|json}}</div>
-            </td>
-        </tr>
+<ng-template #createBlock>
+    <div class="row">
 
-    </tbody>
-</table>
+
+        <div class="card text-black bg-gradient-primary mb-3">
+
+            <div class="card-body">
+                <h5 class="card-title">Create Route</h5>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-secondary">Cancel</button>
+                    </div>
+                    <div class=" col ">
+                        <button class=" btn btn-success " (click)="doSwitch()">Yes</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #stepsBlock>
+    <div class="row">
+
+        <div class="col">
+            <button type="button" class="btn btn-outline-success">
+                <i class="bi bi-info-circle"></i> Process Routes
+            </button>
+        </div>
+
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-sm">edit</button>
+        </div>
+    </div>
+
+
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <td scope="col">Step</td>
+                <td scope="col">Step Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let step of steps;let indexOfelement=index;">
+                <td scope="row">
+                    <div [ngClass]="(step.type=='Terminator')?'bd-callout-warning':'bd-callout-success'"
+                        class="bd-callout  ">
+                        {{indexOfelement*10}}</div>
+                </td>
+                <td scope="row">
+                    <div>{{step.content}}</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</ng-template>

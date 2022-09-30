@@ -3,8 +3,8 @@ const { DB_HOST, DB_USERNAME, DB_PASSWORD, DB_SCHEMA } = process.env;
 
 module.exports = {
   development: {
-    username: DB_USERNAME,
-    password: DB_PASSWORD,
+    username: DB_USERNAME || "postgres",
+    password: DB_PASSWORD || "admin",
     database: DB_SCHEMA || "bluenetdev",
     host: DB_HOST,
     dialect: "postgres"

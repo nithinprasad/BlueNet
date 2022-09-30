@@ -21,9 +21,10 @@
                 </select>
             </div>
         </div>
-
-        <ejs-diagram height="700px" #diagram id="diagram" [snapSettings]='snapSettings'>
-        </ejs-diagram>
+        <div class="col-10">
+            <ejs-diagram height="400px" #diagram id="diagram" [snapSettings]='snapSettings'>
+            </ejs-diagram>
+        </div>
         <button type="button" (click)="undo()" class=" btn btn-info btn-sm">Undo</button>
         <button type="button" (click)="redo()" class="btn btn-info btn-sm">Redo</button>
         <button type="button" (click)="save()" class="btn btn-info btn-sm">Save</button>

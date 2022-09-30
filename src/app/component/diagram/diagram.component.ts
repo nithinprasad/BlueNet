@@ -62,7 +62,9 @@ export class DiagramComponents implements OnInit {
     this.diagramService.createRevision(this.document.id, input).subscribe({
       next: data => {
         console.log(data);
-        this.router.navigate(['/']);
+        this.router.navigate(['/document', this.document.id]).then(() => {
+          window.location.reload();
+        });
       }
     });
 

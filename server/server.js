@@ -17,7 +17,7 @@ app.use('/api', routes);
 app.get("/", (req, res) => {
     res.json({ message: "Welcome to bluenet application." });
 });
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 9080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });

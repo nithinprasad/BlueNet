@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ConnectorConstraints, ConnectorModel, HtmlModel, NativeModel, NodeModel, PaletteModel } from '@syncfusion/ej2-diagrams';
+import { AnnotationConstraints, ConnectorConstraints, ConnectorModel, HtmlModel, NativeModel, NodeConstraints, NodeModel, PaletteModel } from '@syncfusion/ej2-diagrams';
 @Injectable({
   providedIn: 'root'
 })
@@ -7,6 +7,7 @@ export class NodeModelsBasicService {
 
 
   constructor() { }
+
 
   public symbolPalette: PaletteModel[] = [
     {
@@ -17,44 +18,44 @@ export class NodeModelsBasicService {
     },
     {
       id: 'pullID',
-      symbols: this.getRectangle('pull'),
+      symbols: this.getRectangle('pull', 'Pull Material'),
       title: 'Pull Material',
       expanded: false,
     },
     {
       id: 'inspection',
-      symbols: this.getDiamond(),
+      symbols: this.getDiamond('Inspection', 'Inspection'),
       title: 'Inspection',
       expanded: false
     },
     {
       id: 'productionId',
-      symbols: this.getRectangle('production'),
+      symbols: this.getRectangle('production', 'Production'),
       title: 'Production',
       expanded: false
     },
     {
       id: 'storageId',
-      symbols: this.getRectangle('storage'),
+      symbols: this.getRectangle('storage', 'Storage'),
       title: 'Storage',
       expanded: false
     },
     {
       id: 'assemblyId',
-      symbols: this.getRectangle('assembly'),
+      symbols: this.getRectangle('assembly', 'Assembly'),
       title: 'Assembly',
       expanded: false
     },
     {
       id: 'customId',
-      symbols: this.getRectangle('custom'),
+      symbols: this.getRectangle('custom', 'Custom Task'),
       title: 'Custom Task',
       expanded: false
     },
     {
       id: 'dispatch',
       symbols: this.getArrow(),
-      title: 'Custom Task',
+      title: 'Dispatch',
       expanded: false
     },
     {
@@ -65,37 +66,80 @@ export class NodeModelsBasicService {
     }
   ];
 
-  public getRectangle(id: string): NodeModel[] {
+  public getRectangle(id: string, name: string): NodeModel[] {
     let basicShapes: NodeModel[] = [
       {
         id: id,
 
+        tooltip: {
+          content: name
+        },
+        height: 75,
+        width: 75,
         style: {
           fill: "#6BA5D7",
-          strokeColor: "white"
+          strokeColor: "white",
         },
         shape: {
           type: 'Flow',
           shape: 'Process'
-        }
+        },
+        annotations: [
+          {
+            content: name,
+            horizontalAlignment: 'Left',
+            verticalAlignment: 'Bottom',
+            offset: { x: 0, y: 0 },
+            style: {
+              bold: true
+            },
+            constraints: AnnotationConstraints.ReadOnly
+          },
+          {
+            content: 'Description',
+            style: {
+              textWrapping: 'Wrap'
+            }
+          }
+        ],
       }
     ]
     return basicShapes;
   }
 
-  public getDiamond(): NodeModel[] {
+  public getDiamond(id: string, name: string): NodeModel[] {
     return [
 
       {
-        id: 'process',
+        id: id,
+
+        tooltip: {
+          content: name
+        },
         style: {
-          fill: "red",
+          fill: "green",
           strokeColor: "black"
         },
         shape: {
           type: 'Flow',
           shape: 'Decision'
-        }
+        }, annotations: [
+          {
+            content: name,
+            horizontalAlignment: 'Left',
+            verticalAlignment: 'Bottom',
+            offset: { x: 0, y: 0 },
+            style: {
+              bold: true
+            },
+            constraints: AnnotationConstraints.ReadOnly
+          }, {
+            content: 'Description',
+            style: {
+              textWrapping: 'Wrap'
+            }
+          }
+        ],
       },
     ];
   }
@@ -105,12 +149,31 @@ export class NodeModelsBasicService {
 
       {
         id: 'arrow',
+
+        tooltip: {
+          content: 'Dispatch'
+        },
         style: {
           fill: "red",
           strokeColor: "black"
         },
-        height: 100,
-        width: 100,
+        annotations: [{
+          content: 'Dispatch',
+          horizontalAlignment: 'Left',
+          verticalAlignment: 'Bottom',
+          offset: { x: 0, y: 0 },
+          style: {
+            bold: true
+          },
+          constraints: AnnotationConstraints.ReadOnly
+        }, {
+          content: 'Description',
+          style: {
+            textWrapping: 'Wrap'
+          }
+        }
+        ],
+
         shape: this.getArrowNative()
       },
     ];
@@ -140,24 +203,16 @@ export class NodeModelsBasicService {
   public getConnectors(): ConnectorModel[] {
     let connectors: ConnectorModel[] = [
       {
-        id: 'Link1',
+        id: 'Bezier1',
         type: 'Orthogonal',
-        sourcePoint: { x: 0, y: 0 },
-        targetPoint: { x: 60, y: 60 },
-        targetDecorator: { shape: 'Arrow' },
-        constraints: ConnectorConstraints.Default | ConnectorConstraints.AllowDrop
-      },
-      {
-        id: 'Link2',
-        type: 'Orthogonal',
-        sourcePoint: { x: 0, y: 0 },
-        targetPoint: { x: 60, y: 60 },
-        targetDecorator: { shape: 'None' },
-        constraints: ConnectorConstraints.Default | ConnectorConstraints.AllowDrop
-      },
-      {
-        id: 'Link3',
-        type: 'Straight',
+        tooltip: {
+          content: 'Connector'
+        },
+        style: {
+          strokeColor: '#6BA5D7',
+          fill: '#6BA5D7',
+          strokeWidth: 2
+        },
         sourcePoint: { x: 0, y: 0 },
         targetPoint: { x: 60, y: 60 },
         targetDecorator: { shape: 'Arrow' },

@@ -20,6 +20,7 @@ import { LandingPageComponent } from './component/landing-page/landing-page.comp
 import { DocumentListComponent } from './component/document-list/document-list.component';
 import { DocumentDetailsComponent } from './component/document-details/document-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateRevisionComponent } from './component/create-revision/create-revision.component';
 const firebaseConfig = {
   apiKey: "AIzaSyBgZEJVhqznN9Nyz8ln-EtXyKhDohJ6sYM",
   authDomain: "bluenet-demo.firebaseapp.com",
@@ -45,7 +46,8 @@ const analytics = getAnalytics(app);
     SideStepsComponent,
     LandingPageComponent,
     DocumentListComponent,
-    DocumentDetailsComponent
+    DocumentDetailsComponent,
+    CreateRevisionComponent
   ],
   imports: [
     BrowserModule,
